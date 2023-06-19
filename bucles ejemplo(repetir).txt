@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class java14{
+ public static void main(String args[]){
+
+ Scanner s = new Scanner(System.in);
+
+ 
+
+ do{
+  System.out.println("Ingrese la contraseña"); 
+  String dato = s.nextLine();
+ }while(dato.equals("hola"));
+
+  System.out.println("Ingresaste");
+ }
+}

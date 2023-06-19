@@ -1,0 +1,27 @@
+public class Java15_2{
+ public static void main(String args[]){
+
+  System.out.println("Ciclo for: ");
+   int a = 100, b = 0;
+  for(int i = 1; i<=10;i++){
+   if(!(i==10)){
+    if(i % 2 = 0){
+     a--;
+     System.out.print(a+", ");
+    }else{
+     b++;
+     System.out.print(b+", ");
+    }
+   }else{
+    if(i % 2 = 0){
+     a--;
+     System.out.print(a);
+    }else{
+     b++;
+     System.out.print(b);
+    }
+   }
+  }
+  
+ }
+}

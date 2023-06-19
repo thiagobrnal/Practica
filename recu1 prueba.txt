@@ -1,0 +1,52 @@
+Variables
+ Real precio, acu
+ Entero codigo
+ Caracter metodo
+Inicio
+ cont <- 0
+ venta <- 0
+ acu <- 0
+
+ Leer(codigo)
+
+ Mientras(codigo <> 0)
+
+  Leer(precio)
+  Leer(metodo)
+
+  ventas(precio, acu, metodo)
+
+  cont <- cont + 1
+
+  Leer(codigo)
+
+ FinMientras
+
+ total <-(acu * 35) / 100
+
+ Escribir("El ingreso de ventas fue de: $",acu)
+ Escribir("La cantidad de bicicletas vendidas fue de: ",cont)
+ Escribir("Su ganacia neta es de: $",total)
+
+Fin
+
+
+Procedimiento ventas(Real precio1 ref acu, caracter metodo1)
+ Real venta
+Incio
+ venta <- 0
+ Si(metodo1 = "t")entonces
+   venta <- ((precio1 * 3) /100) + precio1
+  FinSi
+   acu1 <- acu1 + venta
+FinProcedimiento
+
+                          ╱|、
+                         (˚ˎ。7  
+                          |、˜〵          
+                          じしˍ,)ノ
+
+                            ╱|、
+                          (˚ˎ 。7  
+                           |、˜〵          
+                          じしˍ,)ノ

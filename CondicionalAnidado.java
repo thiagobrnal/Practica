@@ -1,0 +1,24 @@
+public class CondicionalAnidado{
+  public static void main(String args[]){
+
+    int op = 3,num1 = 8, num2 = 4, res = 0;
+    if(op == 1){
+      res = num1 + num2;
+      System.out.println("La suma es "+res); 
+    }
+    else if(op == 2){
+      res = num1 - num2;
+      System.out.println("La resta es "+res);
+    }
+    else if(op == 3){
+      res = num1 * num2;
+      System.out.println("La multiplicación es "+res);
+    }
+    else if(op == 4){
+      res = num1 / num2;
+      System.out.println("La división es "+res);
+    } else{
+      System.out.println("La opción no es valida");
+    }
+  }
+}

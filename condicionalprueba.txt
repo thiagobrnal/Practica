@@ -1,0 +1,12 @@
+public Class Condicional{
+  public static void main (String args[]){
+    float mate = 5, bio = 7, quim = 8, prom = 0;
+    prom = (mate + bio + quim)/3;
+    
+    if (prom >= 6){
+      System.out.printl("Aprobó");
+    }else{
+      System.out.printl("Desaprobó");
+    }	
+ } 
+}

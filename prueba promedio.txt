@@ -1,0 +1,6 @@
+public class PromedioPrueba{
+ public static void main(String args[]){
+  
+  int nota1 = 6, nota2 = 7;
+ }
+}
