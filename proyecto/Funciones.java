@@ -185,7 +185,11 @@ public class Funciones extends JFrame implements ActionListener, ItemListener{
    
   }
   if(e.getSource() == item6){
-   
+   txtf1.setText("");
+   txtf2.setText("");
+   txtf3.setText("");
+   combo1.setSelectedIndex(-1);
+   combo2.setSelectedIndex(-1);
   }
   if(e.getSource() == item7){
    System.exit(0);
