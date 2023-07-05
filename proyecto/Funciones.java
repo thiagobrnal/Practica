@@ -20,6 +20,10 @@ public class Funciones extends JFrame implements ActionListener, ItemListener{
   setTitle("Sistema Vacacional");
   setIconImage(new ImageIcon(getClass().getResource("images/icon.png")).getImage());
 
+  
+
+  
+
  //Menus y Submenus
 
   menuBar = new JMenuBar();
@@ -68,7 +72,7 @@ public class Funciones extends JFrame implements ActionListener, ItemListener{
   //fin menus y submenus
 
   //Label
-  ImageIcon image = new ImageIcon("images/coca-cola.png");
+  ImageIcon image = new ImageIcon("images/logo-cocan.png");
   lab1 = new JLabel(image);
   lab1.setBounds(150,10,300,100);
   add(lab1);
@@ -169,20 +173,47 @@ public class Funciones extends JFrame implements ActionListener, ItemListener{
  }
 
  public void actionPerformed(ActionEvent e){
+
+  Container contentPane = getContentPane();
+
   if(e.getSource() == item1){
-   
+   contentPane.setBackground(new Color(212,0,48));
+   lab3.setForeground(new Color(255,255,255));
+   lab4.setForeground(new Color(255,255,255));
+   lab5.setForeground(new Color(255,255,255));
+   lab6.setForeground(new Color(255,255,255));
+   lab7.setForeground(new Color(255,255,255));
+   lab8.setForeground(new Color(255,255,255));
+   lab9.setForeground(new Color(255,255,255));
+
   }
   if(e.getSource() == item2){
-   
+   contentPane.setBackground(new Color(240,240,240));
+   lab3.setForeground(new Color(0,0,0));
+   lab4.setForeground(new Color(0,0,0));
+   lab5.setForeground(new Color(0,0,0));
+   lab6.setForeground(new Color(0,0,0));
+   lab7.setForeground(new Color(0,0,0));
+   lab8.setForeground(new Color(0,0,0));
+   lab9.setForeground(new Color(0,0,0));
   }
   if(e.getSource() == item3){
-   
+   contentPane.setBackground(new Color(102,0,161));
+   lab3.setForeground(new Color(255,255,255));
+   lab4.setForeground(new Color(255,255,255));
+   lab5.setForeground(new Color(255,255,255));
+   lab6.setForeground(new Color(255,255,255));
+   lab7.setForeground(new Color(255,255,255));
+   lab8.setForeground(new Color(255,255,255));
+   lab9.setForeground(new Color(255,255,255));
   }
   if(e.getSource() == item4){
+
    
   }
   if(e.getSource() == item5){
-   
+   JFrame frame = new JFrame();
+        JOptionPane.showMessageDialog(frame, "Hecho por BlockWizard");
   }
   if(e.getSource() == item6){
    txtf1.setText("");

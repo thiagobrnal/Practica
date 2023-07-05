@@ -7,6 +7,7 @@ public class Principal extends JFrame implements ActionListener{
  private JTextField txtf1;
  private JLabel lab1, lab2, lab3, lab4;
  private JButton btn1;
+ public static String texto = "";
  
  public Principal(){
   setLayout(null);
@@ -58,7 +59,17 @@ public class Principal extends JFrame implements ActionListener{
  public void actionPerformed(ActionEvent e){
 
   if(e.getSource() == btn1){
-     System.exit(0);
+   texto = txtf1.getText().trim();
+   if(texto.equals("")){
+    JOptionPane.showMessageDialog(null, "Debes ingresar tu nombre");
+   }else{
+      Licencia form1 = new Licencia();
+      form1.setBounds(0,0,615,370);
+      form1.setVisible(true);
+      form1.setResizable(false);
+      form1.setLocationRelativeTo(null);
+      this.setVisible(false);
+   }
   }
 
  }
