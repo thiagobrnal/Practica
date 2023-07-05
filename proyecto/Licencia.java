@@ -10,12 +10,17 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener{
  private JCheckBox box1;
  private JScrollPane scroll1;
  private JLabel lab1, lab2;
+ String nombre = "";
 
  public Licencia(){
   setLayout(null);
 
+  setDefaultCloseOperation(EXIT_ON_CLOSE);
   setTitle("Licencia de uso");
   setIconImage(new ImageIcon(getClass().getResource("images/icon.png")).getImage());
+
+  Principal ventanaBienvenida = new Principal();
+  nombre = ventanaBienvenida.texto;
 
   lab1 = new JLabel("TÉRMINOS Y CONDICIONES");
   lab1.setBounds(190,5,300,30);
@@ -34,7 +39,7 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener{
   scroll1.setBounds(10,40,580,200);
   add(scroll1);
 
-  box1 = new JCheckBox("Acepto");
+  box1 = new JCheckBox("Yo "+nombre+" Acepto");
   box1.setBounds(10,250,300,30);
   box1.addChangeListener(this);
   add(box1);
@@ -60,17 +65,31 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener{
  public void actionPerformed(ActionEvent e){
 
   if(e.getSource() == btn1){
-     System.exit(0);
+   Funciones form1 = new Funciones();
+   form1.setBounds(0,0,615,500);
+   form1.setVisible(true);
+   form1.setResizable(false);
+   form1.setLocationRelativeTo(null);
+   this.setVisible(false);
   }
-
+  if(e.getSource() == btn2){
+  Principal form1 = new Principal();
+  form1.setBounds(0,0,370,450);
+  form1.setVisible(true);
+  form1.setResizable(false);
+  form1.setLocationRelativeTo(null);
+  this.setVisible(false);
+  }
  }
 
  public void stateChanged(ChangeEvent e){
 
   if(box1.isSelected() == true){
    btn1.setEnabled(true);
+   btn2.setEnabled(false);
   }else{
    btn1.setEnabled(false);
+   btn2.setEnabled(true);
   }
 
  }

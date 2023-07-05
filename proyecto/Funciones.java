@@ -13,16 +13,17 @@ public class Funciones extends JFrame implements ActionListener, ItemListener{
  private JComboBox combo1, combo2;
  private JTextArea txta1;
  private JScrollPane scroll1;
+ String nombreAdmin = "";
 
  public Funciones(){
   setLayout(null);
 
+  setDefaultCloseOperation(EXIT_ON_CLOSE);
   setTitle("Sistema Vacacional");
   setIconImage(new ImageIcon(getClass().getResource("images/icon.png")).getImage());
 
-  
-
-  
+  Principal ventanaBienvenida = new Principal();
+  nombreAdmin = ventanaBienvenida.texto;
 
  //Menus y Submenus
 
@@ -77,8 +78,8 @@ public class Funciones extends JFrame implements ActionListener, ItemListener{
   lab1.setBounds(150,10,300,100);
   add(lab1);
 
-  lab2 = new JLabel("Bienvenido");
-  lab2.setBounds(248,100,300,30);
+  lab2 = new JLabel("Bienvenido "+ nombreAdmin);
+  lab2.setBounds(185,100,300,30);
   lab2.setFont(new Font("Montserrat", 1, 18));
   lab2.setForeground(new Color(0,0,0));
   add(lab2);
@@ -165,7 +166,7 @@ public class Funciones extends JFrame implements ActionListener, ItemListener{
   txta1 = new JTextArea();
   txta1.setEditable(false);
   txta1.setFont(new Font("Montserrat", 1, 10));
-  txta1.setText("\n Aquí aparece el resultado del cálculo de las vacaciones.");
+  txta1.setText("\n   Aquí aparece el resultado del cálculo de las vacaciones.");
   txta1.setForeground(new Color(100,100,100));
   scroll1 = new JScrollPane(txta1);
   scroll1.setBounds(250,320,320,100);
@@ -208,22 +209,101 @@ public class Funciones extends JFrame implements ActionListener, ItemListener{
    lab9.setForeground(new Color(255,255,255));
   }
   if(e.getSource() == item4){
-
+   String nombreTrabajador = txtf1.getText();
+   String aP = txtf2.getText();
+   String aM = txtf3.getText();
+   String dep = combo1.getSelectedItem().toString();
+   String antiguedad = combo2.getSelectedItem().toString();
    
+   if(nombreTrabajador.equals("") || aP.equals("") || aM.equals("") || dep.equals("") || antiguedad.equals("")){
+
+    JOptionPane.showMessageDialog(null, "Debes rellenar los campos");
+
+   }else{
+
+    if(dep.equals("Atención al cliente")){
+ 
+      if(antiguedad.equals("1 año")){
+      	txta1.setText("\n   El trabajador "+nombreTrabajador+" "+aP+" "+aM+
+        	      "\n   quien trabaja en "+dep+" con "+antiguedad+" de servicio"+
+                      "\n   recibe 6 días de vacaciones.");
+      }    
+ 
+      if(antiguedad.equals("2 a 6 años")){
+      	txta1.setText("\n   El trabajador "+nombreTrabajador+" "+aP+" "+aM+
+        	      "\n   quien trabaja en "+dep+" con "+antiguedad+" de servicio"+
+                      "\n   recibe 14 días de vacaciones.");
+      }  
+
+      if(antiguedad.equals("7 años")){
+      	txta1.setText("\n   El trabajador "+nombreTrabajador+" "+aP+" "+aM+
+        	      "\n   quien trabaja en "+dep+" con "+antiguedad+" de servicio"+
+                      "\n   recibe 20 días de vacaciones.");
+      }  
+    }
+
+    if(dep.equals("Logística")){
+ 
+      if(antiguedad.equals("1 año")){
+      	txta1.setText("\n   El trabajador "+nombreTrabajador+" "+aP+" "+aM+
+        	      "\n   quien trabaja en "+dep+" con "+antiguedad+" de servicio"+
+                      "\n   recibe 7 días de vacaciones.");
+      }    
+ 
+      if(antiguedad.equals("2 a 6 años")){
+      	txta1.setText("\n   El trabajador "+nombreTrabajador+" "+aP+" "+aM+
+        	      "\n   quien trabaja en "+dep+" con "+antiguedad+" de servicio"+
+                      "\n   recibe 15 días de vacaciones.");
+      }  
+
+      if(antiguedad.equals("7 años")){
+      	txta1.setText("\n   El trabajador "+nombreTrabajador+" "+aP+" "+aM+
+        	      "\n   quien trabaja en "+dep+" con "+antiguedad+" de servicio"+
+                      "\n   recibe 22 días de vacaciones.");
+      }  
+    }
+
+    if(dep.equals("Gerentes")){
+ 
+      if(antiguedad.equals("1 año")){
+      	txta1.setText("\n   El trabajador "+nombreTrabajador+" "+aP+" "+aM+
+        	      "\n   quien trabaja en "+dep+" con "+antiguedad+" de servicio"+
+                      "\n   recibe 10 días de vacaciones.");
+      }    
+ 
+      if(antiguedad.equals("2 a 6 años")){
+      	txta1.setText("\n   El trabajador "+nombreTrabajador+" "+aP+" "+aM+
+        	      "\n   quien trabaja en "+dep+" con "+antiguedad+" de servicio"+
+                      "\n   recibe 20 días de vacaciones.");
+      }  
+
+      if(antiguedad.equals("7 años")){
+      	txta1.setText("\n   El trabajador "+nombreTrabajador+" "+aP+" "+aM+
+        	      "\n   quien trabaja en "+dep+" con "+antiguedad+" de servicio"+
+                      "\n   recibe 30 días de vacaciones.");
+      }  
+    }
+
+   }
   }
   if(e.getSource() == item5){
-   JFrame frame = new JFrame();
-        JOptionPane.showMessageDialog(frame, "Hecho por BlockWizard");
+        JOptionPane.showMessageDialog(null, "Hecho por BlockWizard");
   }
   if(e.getSource() == item6){
    txtf1.setText("");
    txtf2.setText("");
    txtf3.setText("");
-   combo1.setSelectedIndex(-1);
-   combo2.setSelectedIndex(-1);
+   combo1.setSelectedIndex(0);
+   combo2.setSelectedIndex(0);
+   txta1.setText("\n   Aquí aparece el resultado del cálculo de las vacaciones.");
   }
   if(e.getSource() == item7){
-   System.exit(0);
+   Principal form1 = new Principal();
+   form1.setBounds(0,0,370,450);
+   form1.setVisible(true);
+   form1.setResizable(false);
+   form1.setLocationRelativeTo(null);
+   this.setVisible(false);
   }
  }
 

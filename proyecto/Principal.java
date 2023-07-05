@@ -12,6 +12,7 @@ public class Principal extends JFrame implements ActionListener{
  public Principal(){
   setLayout(null);
 
+  setDefaultCloseOperation(EXIT_ON_CLOSE);
   setTitle("Bienvenido");
   getContentPane().setBackground(new Color(255,0,0));
   setIconImage(new ImageIcon(getClass().getResource("images/icon.png")).getImage());
