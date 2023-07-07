@@ -2,7 +2,7 @@
 /*
  *Clase para las funciones logicas de una lavadora
 */
-package LLFunciones;
+package Library;
 
 /*
  *BlockWizard
