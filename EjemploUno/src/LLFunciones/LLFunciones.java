@@ -34,11 +34,11 @@ public class LLFunciones {
     
         Llenado();
         if (llenadoCompleto == 1) {
-            if (tipoDeRopa == 1) {
+            if (getTipoDeRopa() == 1) {
                 System.out.println("Ropa blanca / Lavado suave");
                 System.out.println("Lavando...");
                 lavadoCompleto = 1;
-            }else if (tipoDeRopa == 2) {
+            }else if (getTipoDeRopa() == 2) {
                 System.out.println("Ropa de color / Lavado intenso");
                 System.out.println("Lavando...");
                 lavadoCompleto = 1;
@@ -68,4 +68,21 @@ public class LLFunciones {
             System.out.println("Tu ropa está lista.");
         }
     }
+    
+    //Setter y Getter
+
+    /**
+     * @return the tipoDeRopa
+     */
+    public int getTipoDeRopa() {
+        return tipoDeRopa;
+    }
+
+    /**
+     * @param tipoDeRopa the tipoDeRopa to set
+     */
+    public void setTipoDeRopa(int tipoDeRopa) {
+        this.tipoDeRopa = tipoDeRopa;
+    }
+    
 }

@@ -14,9 +14,11 @@ public class LavadoraUno {
         System.out.println("¿De que color es la ropa?");
         System.out.println("1: Ropa blanca");
         System.out.println("2: Ropa a color");
-        int tRopa =s.nextInt();
+        int tipoDeRopa =s.nextInt();
         
-        LLFunciones mensajero = new LLFunciones(k, tRopa);
-        mensajero.CicloFinalizado();
+        LLFunciones mensajero = new LLFunciones(k, tipoDeRopa);
+        mensajero.setTipoDeRopa(2);
+        System.out.println("El tipo de ropa es: "+ mensajero.getTipoDeRopa());
+        mensajero.CicloFinalizado();    
     }
 }
