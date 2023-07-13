@@ -21,8 +21,7 @@ public class JDBC {
                     
                     while (rs.next()) {
                         
-                        System.out.println("Code");
-                        
+                          System.out.println(rs.getString("ID") + "\t" + rs.getString("Name") + "\t" + rs.getString("Population"));
                     }
                 }
             }
