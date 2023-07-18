@@ -9,32 +9,33 @@ public class Persistencia {
     private final EntityManagerFactory emf;
     private final EntityManager em;
     
+    
 
     public Persistencia(){
-        this.emf = Persistence.createEntityManagerFactory("coaticDBPU");
+        this.emf = Persistence.createEntityManagerFactory("CoaticDBPU");
         this.em = emf.createEntityManager();
     }
     
-    public void Insertar(Object o){
+    public void insertar(Object o){
         this.em.getTransaction().begin();
         this.em.persist(o);
         this.em.getTransaction().commit();
     }
     
-    public void Modificar(Object o){
+    public void modificar(Object o){
         this.em.getTransaction().begin();
         this.em.merge(o);
         this.em.getTransaction().commit();
     }
     
-    public void Eliminar(Object o){
+    public void eliminar(Object o){
         this.em.getTransaction().begin();
         this.em.remove(o);
         this.em.getTransaction().commit();
     }
     
     
-    public Object Buscar(Class clase, Object id){
+    public Object buscar(Class clase, Object id){
         Object o = em.find(clase, id);
         return o;
     }

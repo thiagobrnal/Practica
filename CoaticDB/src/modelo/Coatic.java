@@ -1,11 +1,10 @@
 package modelo;
 
-import java.util.*;
 import javax.persistence.*;
 import persistencia.Persistencia;
 
 @Entity
-public class CoaticDB {
+public class Coatic {
     
     @Id
     private Long id;
@@ -15,31 +14,32 @@ public class CoaticDB {
     private static Persistencia persistencia;
     
     //Coatic conoce a todoas las areas a
-    @OneToMany(mappedBy = "coatic")
-    private Set<Area> areas;
+    //@OneToMany(mappedBy = "coatic")
+    //private Set<Area> areas;
     
     //Constructor nulo {necesario}
-    public CoaticDB(){
+    public Coatic(){
     }
     
     //Contructir con parametros
-    public CoaticDB(Long id, String nombre){
+    public Coatic(Long id, String nombre){
         this.id = id;
         this.nombre = nombre;
         
         //Cuando se construye el CoaticDB
         //Se guarda en la base de datos a si mismo
-        CoaticDB.persistencia.Insertar(this);
+        Coatic.persistencia.insertar(this);
     }
 
+    static {
+        persistencia = new Persistencia();
+   
+    }
     
     public static Persistencia getPersistencia(){
         return persistencia;
     }
     
-    static {
-        persistencia = new Persistencia();
-    }
     /**
      * @return the nombre
      */
@@ -54,7 +54,7 @@ public class CoaticDB {
         this.nombre = nombre;
     }
     
-    public Set<Area> getAreas(){
+    /*public Set<Area> getAreas(){
         return this.areas;
     }
     
@@ -62,5 +62,5 @@ public class CoaticDB {
         this.areas = areas;
     }
     
-    
+    */
 }
