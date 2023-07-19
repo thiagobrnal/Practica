@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -11,6 +12,10 @@ public class Area {
     private Long id;
 
     private String nombre;
+    
+    //El area conoce a muchos cursos
+    @OneToMany(mappedBy = "area")
+    private Set<Curso> cursos;
 
     //muchas areas se relacionan con el mismo coatic
     @ManyToOne(cascade = CascadeType.REFRESH)

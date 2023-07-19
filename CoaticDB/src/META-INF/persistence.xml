@@ -4,6 +4,8 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>modelo.Coatic</class>
     <class>modelo.Area</class>
+    <class>modelo.Curso</class>
+    <class>modelo.Alumno</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/coatic"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
