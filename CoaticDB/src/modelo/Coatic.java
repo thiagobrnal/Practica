@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.Set;
 import javax.persistence.*;
 import persistencia.Persistencia;
 
@@ -14,8 +15,8 @@ public class Coatic {
     private static Persistencia persistencia;
     
     //Coatic conoce a todoas las areas a
-    //@OneToMany(mappedBy = "coatic")
-    //private Set<Area> areas;
+    @OneToMany(mappedBy = "coatic")
+    private Set<Area> areas;
     
     //Constructor nulo {necesario}
     public Coatic(){
@@ -54,7 +55,7 @@ public class Coatic {
         this.nombre = nombre;
     }
     
-    /*public Set<Area> getAreas(){
+    public Set<Area> getAreas(){
         return this.areas;
     }
     
@@ -62,5 +63,5 @@ public class Coatic {
         this.areas = areas;
     }
     
-    */
+    
 }

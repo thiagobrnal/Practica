@@ -1,7 +1,8 @@
 package sistema;
 
 import modelo.Coatic;
-//import modelo.Area;
+import modelo.Area;
+import java.util.*;
 
 public class Inicio {
 
@@ -12,10 +13,12 @@ public class Inicio {
         if (c == null) {
             c = new Coatic(1L, "Red Coatic");
         }
-    }
-    /*Area a1 = new Area("Programacion",c);
+        
+        Area a1 = new Area("Programacion",c);
         Area a2 = new Area("Marketing",c);
-        CoaticDB.getPersistencia().Insertar(a1);
-        CoaticDB.getPersistencia().Insertar(a2);*/
+        Coatic.getPersistencia().insertar(a1);
+        Coatic.getPersistencia().insertar(a2);
+    }
+       
 
 }

@@ -22,9 +22,9 @@ public class Area {
     }
 
     //constructor con parametros
-    public Area(String nombre, Coatic coatic) {
+    public Area(String nombre, Coatic c) {
         this.nombre = nombre;
-        this.coatic = coatic;
+        this.coatic = c;
     }
 
     public String getNombre() {
