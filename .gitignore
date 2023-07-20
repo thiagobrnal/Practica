@@ -1,5 +1,6 @@
 #pushhhhh
 *.class
+*.xml
 /EjemploUno/nbproject/private/
 /EjemploUno/build/
 /LavadorasSamsung/nbproject/private/

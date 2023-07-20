@@ -49,16 +49,10 @@ public class Coatic {
         return persistencia;
     }
 
-    /**
-     * @return the nombre
-     */
     public String getNombre() {
         return this.nombre;
     }
 
-    /**
-     * @param nombre the nombre to set
-     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -87,4 +81,24 @@ public class Coatic {
         this.cursos = cursos;
     }
 
+    //Coatic gestiona las areas
+    public void crearArea(String nombre) {
+        Area area = new Area(nombre, this);
+        this.areas.add(area);
+        //inserta el area en la base de datos
+        Coatic.getPersistencia().insertar(area);
+    }
+
+    public void modificarArea(Area area, String nombre) {
+        if (area != null) {
+            area.setNombre(nombre);
+            Coatic.getPersistencia().modificar(area);
+        }
+    }
+
+    public void eliminarArea(Area area) {
+        if (area != null) {
+            Coatic.getPersistencia().eliminar(area);
+        }
+    }
 }
