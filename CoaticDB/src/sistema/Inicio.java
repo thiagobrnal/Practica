@@ -17,6 +17,7 @@ public class Inicio {
         Principal ventana = new Principal(c);
         ventana.setVisible(true);
         ventana.setLocationRelativeTo(null);
+        ventana.setResizable(false);
         
     }
        
