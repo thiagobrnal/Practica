@@ -32,10 +32,8 @@ public class Alumno {
     }
 
     //constructor con parametros
-    public Alumno(String nombre, String dni, Date fechaNacimiento, Coatic c) {
+    public Alumno(String nombre, Coatic c) {
         this.nombre = nombre;
-        this.dni = dni;
-        this.fechaNacimiento = fechaNacimiento;
         this.coatic = c;
     }
 
@@ -47,21 +45,6 @@ public class Alumno {
         this.nombre = nombre;
     }
 
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
 
     public Set<Curso> getCursos() {
         return cursos;
@@ -69,5 +52,10 @@ public class Alumno {
 
     public void setCursos(Set<Curso> cursos) {
         this.cursos = cursos;
+    }
+    
+    @Override
+    public String toString(){
+        return this.getNombre();
     }
 }

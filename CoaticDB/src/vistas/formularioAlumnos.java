@@ -2,15 +2,20 @@ package vistas;
 
 import modelo.*;
 
-public class formularioAreas extends javax.swing.JInternalFrame {
+public class formularioAlumnos extends javax.swing.JInternalFrame {
 
     
     private Coatic c;
     
-    public formularioAreas(Coatic c) {
+    public formularioAlumnos(Coatic c) {
         this.c=c;
         initComponents();
-        this.lstAreas.setListData(this.c.getAreas().toArray());
+        this.lstAlumnos.setListData(this.c.getAreas().toArray());
+        
+        for(Curso cu : this.c.getCursos())
+        this.cmbCursos.addItem(cur);
+        
+        this.cmbCursos.setSelectedItem(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -18,23 +23,26 @@ public class formularioAreas extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstAreas = new javax.swing.JList();
+        lstAlumnos = new javax.swing.JList();
         jLabel1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         btnNuevo = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         lblCursos = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        cmbCursos = new javax.swing.JComboBox();
+        btnInscribir = new javax.swing.JButton();
 
         setClosable(true);
 
-        lstAreas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        lstAreas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        lstAlumnos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstAlumnos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                areaSeleccionada(evt);
+                alumnoSeleccionada(evt);
             }
         });
-        jScrollPane1.setViewportView(lstAreas);
+        jScrollPane1.setViewportView(lstAlumnos);
 
         jLabel1.setText("Nombre");
 
@@ -64,6 +72,15 @@ public class formularioAreas extends javax.swing.JInternalFrame {
         lblCursos.setToolTipText("");
         lblCursos.setOpaque(true);
 
+        jLabel2.setText("Cursos");
+
+        btnInscribir.setText("Inscribir");
+        btnInscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInscribirnuevoArea(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,24 +88,29 @@ public class formularioAreas extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNombre)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnNuevo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnGuardar)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEliminar)))
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(176, Short.MAX_VALUE)
-                    .addComponent(lblCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(61, Short.MAX_VALUE)))
+                        .addComponent(btnInscribir)
+                        .addGap(83, 83, 83))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombre)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnNuevo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnGuardar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                                .addComponent(btnEliminar))
+                            .addComponent(cmbCursos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(lblCursos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,13 +127,16 @@ public class formularioAreas extends javax.swing.JInternalFrame {
                             .addComponent(btnNuevo)
                             .addComponent(btnGuardar)
                             .addComponent(btnEliminar))
+                        .addGap(18, 18, 18)
+                        .addComponent(lblCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnInscribir)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(129, Short.MAX_VALUE)
-                    .addComponent(lblCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(26, Short.MAX_VALUE)))
         );
 
         pack();
@@ -123,33 +148,37 @@ public class formularioAreas extends javax.swing.JInternalFrame {
 
     private void guardarArea(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarArea
         //Para verificar si hay algo seleccionado en mi lista
-        if (this.lstAreas.isSelectionEmpty()) {
+        if (this.lstAlumnos.isSelectionEmpty()) {
             //crear un area
-            this.c.crearArea(this.txtNombre.getText());
+            this.c.crearAlumno(this.txtNombre.getText());
         }else{
-            Area a = (Area)this.lstAreas.getSelectedValue();
-            this.c.modificarArea(a, this.txtNombre.getText());
+             Alumno al = (Alumno) this.lstAlumnos.getSelectedValue();
+            this.c.modificarAlumno(al, this.txtNombre.getText());
         }
         Limpiar();
     }//GEN-LAST:event_guardarArea
 
     private void eliminarArea(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarArea
-         if (!this.lstAreas.isSelectionEmpty()){
-             Area a = (Area)this.lstAreas.getSelectedValue();
-             this.c.eliminarArea(a);
+         if (!this.lstAlumnos.isSelectionEmpty()){
+              Alumno al = (Alumno) this.lstAlumnos.getSelectedValue();
+             this.c.eliminarAlumno(al);
              Limpiar();
          }
     }//GEN-LAST:event_eliminarArea
 
-    private void areaSeleccionada(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_areaSeleccionada
-        if (!this.lstAreas.isSelectionEmpty()) {
-            Area a = (Area) this.lstAreas.getSelectedValue();
+    private void alumnoSeleccionada(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_alumnoSeleccionada
+        if (!this.lstAlumnos.isSelectionEmpty()) {
+            Alumno al = (Alumno) this.lstAlumnos.getSelectedValue();
             //Asigna los valores de los atributos a los componentes
-            this.txtNombre.setText(a.getNombre());
+            this.txtNombre.setText(al.getNombre());
             
-            this.lblCursos.setText(a.getCursos().toString());
+            this.lblCursos.setText(al.getCursos().toString());
         }
-    }//GEN-LAST:event_areaSeleccionada
+    }//GEN-LAST:event_alumnoSeleccionada
+
+    private void btnInscribirnuevoArea(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscribirnuevoArea
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInscribirnuevoArea
 
     private void Limpiar(){
         //Limpiar las cajas de texto
@@ -157,17 +186,20 @@ public class formularioAreas extends javax.swing.JInternalFrame {
         System.out.println("Refrescando...");
         Coatic.getPersistencia().refrescar(this.c);
         System.out.println("Actualizado...");
-        this.lstAreas.setListData(this.c.getAreas().toArray());
+        this.lstAlumnos.setListData(this.c.getAreas().toArray());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnInscribir;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JComboBox cmbCursos;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCursos;
-    private javax.swing.JList lstAreas;
+    private javax.swing.JList lstAlumnos;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

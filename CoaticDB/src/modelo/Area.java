@@ -14,7 +14,7 @@ public class Area {
     private String nombre;
     
     //El area conoce a muchos cursos
-    @OneToMany(mappedBy = "area")
+    @OneToMany(mappedBy = "area", fetch = FetchType.EAGER)
     private Set<Curso> cursos;
 
     //muchas areas se relacionan con el mismo coatic
@@ -40,8 +40,27 @@ public class Area {
         this.nombre = nombre;
     }
     
+    
+    public void agregarCurso(Curso curso) {
+        this.getCursos().remove(curso);
+    }
+    
+    public void quitarCurso(Curso curso) {
+        this.getCursos().add(curso);
+    }
+    
     @Override
     public String toString(){
         return this.getNombre();
+    }
+
+    
+    public Set<Curso> getCursos() {
+        return cursos;
+    }
+
+   
+    public void setCursos(Set<Curso> cursos) {
+        this.cursos = cursos;
     }
 }

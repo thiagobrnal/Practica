@@ -42,11 +42,8 @@ public class Curso {
     }
 
     //constructor con parametros
-    public Curso(String nombre, int meses, Date inicio, boolean esPrecencial, Area area, Coatic c) {
+    public Curso(String nombre, Area area, Coatic c) {
         this.nombre = nombre;
-        this.meses = meses;
-        this.inicio = inicio;
-        this.presencial = esPrecencial;
         this.area = area;
         this.coatic = c;
 
@@ -90,5 +87,10 @@ public class Curso {
 
     public void setArea(Area area) {
         this.area = area;
+    }
+    
+    @Override
+    public String toString(){
+        return this.getNombre();
     }
 }

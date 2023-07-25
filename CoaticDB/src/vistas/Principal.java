@@ -1,10 +1,14 @@
 package vistas;
 
 import modelo.*;
+import javax.swing.*;
+import java.awt.*;
 
 public class Principal extends javax.swing.JFrame {
 
     private formularioAreas areaForm = null;
+    private formularioCursos cursoForm = null;
+    private formularioAlumnos alumnosForm = null;
     private Coatic coatic;
     
     public Principal(Coatic c) {
@@ -16,12 +20,28 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dPanel = new javax.swing.JDesktopPane();
+        dPanel = new javax.swing.JDesktopPane() {
+            ImageIcon icon = new ImageIcon("src\\images\\icon.jpg");
+            Image image = icon.getImage();
+
+            Image logo = image.getScaledInstance(392, 420, Image.SCALE_SMOOTH);
+
+            @Override
+            protected void paintComponent(Graphics g){
+
+                super.paintComponent(g);
+                g.drawImage(logo, 54, 10, this);
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmiAreas = new javax.swing.JMenuItem();
+        jmiCursos = new javax.swing.JMenuItem();
+        jmiAlumnos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Red CoaTic");
+        setResizable(false);
 
         javax.swing.GroupLayout dPanelLayout = new javax.swing.GroupLayout(dPanel);
         dPanel.setLayout(dPanelLayout);
@@ -41,13 +61,29 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem1.setText("Area");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jmiAreas.setText("Areas");
+        jmiAreas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 formularioAreas(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(jmiAreas);
+
+        jmiCursos.setText("Cursos");
+        jmiCursos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formularioCursos(evt);
+            }
+        });
+        jMenu1.add(jmiCursos);
+
+        jmiAlumnos.setText("Alumnos");
+        jmiAlumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formularioAlumnos(evt);
+            }
+        });
+        jMenu1.add(jmiAlumnos);
 
         jMenuBar1.add(jMenu1);
 
@@ -82,11 +118,31 @@ public class Principal extends javax.swing.JFrame {
         areaForm.setVisible(true);
     }//GEN-LAST:event_formularioAreas
 
+    private void formularioCursos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formularioCursos
+        if (cursoForm == null || cursoForm.isClosed()) {
+            cursoForm = new formularioCursos(coatic);
+            this.dPanel.add(cursoForm);
+            
+        }
+        cursoForm.setVisible(true);
+    }//GEN-LAST:event_formularioCursos
+
+    private void formularioAlumnos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formularioAlumnos
+        if (alumnosForm == null || alumnosForm.isClosed()) {
+            alumnosForm = new formularioAlumnos(coatic);
+            this.dPanel.add(alumnosForm);
+            
+        }
+        cursoForm.setVisible(true);
+    }//GEN-LAST:event_formularioAlumnos
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dPanel;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jmiAlumnos;
+    private javax.swing.JMenuItem jmiAreas;
+    private javax.swing.JMenuItem jmiCursos;
     // End of variables declaration//GEN-END:variables
 }

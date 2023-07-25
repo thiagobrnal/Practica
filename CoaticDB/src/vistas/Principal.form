@@ -12,12 +12,28 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formularioAreas"/>
           </Events>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="jmiAreas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Area"/>
+                <Property name="text" type="java.lang.String" value="Areas"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formularioAreas"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmiCursos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cursos"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formularioCursos"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmiAlumnos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Alumnos"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formularioAlumnos"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -27,6 +43,8 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Red CoaTic"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -67,6 +85,9 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JDesktopPane" name="dPanel">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JDesktopPane() {&#xd;&#xa;    ImageIcon icon = new ImageIcon(&quot;src\\images\\icon.jpg&quot;);&#xd;&#xa;    Image image = icon.getImage();&#xd;&#xa;    &#xd;&#xa;    Image logo = image.getScaledInstance(392, 420, Image.SCALE_SMOOTH);&#xd;&#xa;&#xd;&#xa;    @Override&#xd;&#xa;    protected void paintComponent(Graphics g){&#xd;&#xa;    &#xd;&#xa;        super.paintComponent(g);&#xd;&#xa;        g.drawImage(logo, 54, 10, this);&#xd;&#xa;    }&#xd;&#xa;}"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

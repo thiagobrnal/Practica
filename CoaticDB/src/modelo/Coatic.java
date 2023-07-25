@@ -101,4 +101,76 @@ public class Coatic {
             Coatic.getPersistencia().eliminar(area);
         }
     }
+
+    //Coatic gestiona los cursos
+    public void crearCurso(String nombre, Area area) {
+        Curso curso = new Curso(nombre, area, this);
+        this.cursos.add(curso);
+        //inserta el curso en la base de datos
+        Coatic.getPersistencia().insertar(curso);
+
+        area.agregarCurso(curso);
+        Coatic.getPersistencia().modificar(area);
+
+    }
+
+    public void modificarCurso(Curso curso, String nombre, Area nuevo) {
+        if (curso != null) {
+            curso.setNombre(nombre);
+
+            Area viejo = curso.getArea();
+            if (!nuevo.equals(viejo)) {
+                viejo.quitarCurso(curso);
+                Coatic.getPersistencia().modificar(viejo);
+
+                nuevo.agregarCurso(curso);
+                Coatic.getPersistencia().modificar(nuevo);
+
+                curso.setArea(nuevo);
+            }
+            Coatic.getPersistencia().modificar(curso);
+        }
+    }
+
+    public void eliminarCurso(Curso curso) {
+        if (curso != null) {
+            Coatic.getPersistencia().eliminar(curso);
+        }
+    }
+    
+     //Coatic gestiona los cursos
+    public void crearAlumno(String nombre, Area area) {
+        Curso curso = new Curso(nombre, area, this);
+        this.cursos.add(curso);
+        //inserta el curso en la base de datos
+        Coatic.getPersistencia().insertar(curso);
+
+        area.agregarCurso(curso);
+        Coatic.getPersistencia().modificar(area);
+
+    }
+
+    public void modificarAlumno(Curso curso, String nombre, Area nuevo) {
+        if (curso != null) {
+            curso.setNombre(nombre);
+
+            Area viejo = curso.getArea();
+            if (!nuevo.equals(viejo)) {
+                viejo.quitarCurso(curso);
+                Coatic.getPersistencia().modificar(viejo);
+
+                nuevo.agregarCurso(curso);
+                Coatic.getPersistencia().modificar(nuevo);
+
+                curso.setArea(nuevo);
+            }
+            Coatic.getPersistencia().modificar(curso);
+        }
+    }
+
+    public void eliminarAlumno(Curso curso) {
+        if (curso != null) {
+            Coatic.getPersistencia().eliminar(curso);
+        }
+    }
 }
