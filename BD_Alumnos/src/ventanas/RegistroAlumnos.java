@@ -38,8 +38,18 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         jLabel2.setText("Grupo");
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificar(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminar(evt);
+            }
+        });
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -117,12 +127,15 @@ public class RegistroAlumnos extends javax.swing.JFrame {
     private void btnRegistar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistar
         
         try {
+            //crea objeto Connection y paso la conexion usuario y contraseña
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/db_ins", "root","12345678");
+            //creo la query
             PreparedStatement st = con.prepareStatement("INSERT INTO `alumnos` VALUES(?,?,?)");
             
             st.setString(1, "0");
             st.setString(2,txt_nombre.getText().trim());
             st.setString(3, txt_grupo.getText().trim());
+            //ejecuta la query en la bd
             st.executeUpdate();
             
             txt_nombre.setText("");
@@ -136,13 +149,17 @@ public class RegistroAlumnos extends javax.swing.JFrame {
 
     private void btnBuscar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar
         try {
+            //crea objeto Connection y paso la conexion usuario y contraseña
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/db_ins", "root","12345678");
+            //creo la query
             PreparedStatement st = con.prepareStatement("SELECT * FROM `alumnos` WHERE ID = ?");
             
             st.setString(1, txt_id.getText().trim());
             
+            //ejecuta la query en la bd
             ResultSet rs = st.executeQuery();
             
+            //comparo lo que tengo en el txtf con lo de la bd
             if (rs.next()) {
                 txt_nombre.setText(rs.getString("NombreAlumno"));
                 txt_grupo.setText(rs.getString("Grupo"));
@@ -154,6 +171,58 @@ public class RegistroAlumnos extends javax.swing.JFrame {
             System.out.println("No se hizo conexion" + e);
         }
     }//GEN-LAST:event_btnBuscar
+
+    private void btnModificar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar
+        
+        try {
+            
+            String id = txt_id.getText().trim();
+            
+            //crea objeto Connection y paso la conexion usuario y contraseña
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/db_ins","root","12345678");
+            //creo la query
+            //actualiza el nombrealumno, grupo cuando id sea igual al id que se modifica
+            PreparedStatement st = con.prepareStatement("UPDATE `alumnos` SET NombreAlumno = ?, Grupo = ? WHERE ID = "+ id);
+            
+            st.setString(1, txt_nombre.getText().trim());
+            st.setString(2, txt_grupo.getText().trim());
+            
+            //ejecuta la query en la bd
+            st.executeUpdate();
+            
+            lbl_status.setText("Modificacion Exitosa");
+            
+            
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
+    }//GEN-LAST:event_btnModificar
+
+    private void btnEliminar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar
+        
+        try {
+            
+            //crea objeto Connection y paso la conexion usuario y contraseña
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/db_ins", "root","12345678");
+            //creo la query
+            PreparedStatement st = con.prepareStatement("DELETE FROM `alumnos` WHERE ID = ?");
+            
+            st.setString(1, txt_id.getText().trim());
+            
+            //ejecuta la query en la bd
+            st.executeUpdate();
+            
+            txt_nombre.setText("");
+            txt_grupo.setText("");
+            txt_id.setText("");
+            
+            lbl_status.setText("Registro eliminado");
+            
+            
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
+    }//GEN-LAST:event_btnEliminar
 
     /**
      * @param args the command line arguments
