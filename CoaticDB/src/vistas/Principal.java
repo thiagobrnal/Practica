@@ -41,6 +41,7 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Red CoaTic");
+        setPreferredSize(new java.awt.Dimension(515, 500));
         setResizable(false);
 
         javax.swing.GroupLayout dPanelLayout = new javax.swing.GroupLayout(dPanel);
@@ -133,7 +134,7 @@ public class Principal extends javax.swing.JFrame {
             this.dPanel.add(alumnosForm);
             
         }
-        cursoForm.setVisible(true);
+        alumnosForm.setVisible(true);
     }//GEN-LAST:event_formularioAlumnos
 
 

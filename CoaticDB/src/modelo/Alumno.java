@@ -54,6 +54,11 @@ public class Alumno {
         this.cursos = cursos;
     }
     
+  
+    public void agregarCurso(Curso curso) {
+        this.getCursos().add(curso);
+    }
+    
     @Override
     public String toString(){
         return this.getNombre();

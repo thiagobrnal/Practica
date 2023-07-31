@@ -137,40 +137,33 @@ public class Coatic {
             Coatic.getPersistencia().eliminar(curso);
         }
     }
-    
-     //Coatic gestiona los cursos
-    public void crearAlumno(String nombre, Area area) {
-        Curso curso = new Curso(nombre, area, this);
-        this.cursos.add(curso);
+
+    //Coatic gestiona los alumnos
+    public void crearAlumno(String nombre) {
+        Alumno alumno = new Alumno(nombre, this);
+        this.alumnos.add(alumno);
         //inserta el curso en la base de datos
-        Coatic.getPersistencia().insertar(curso);
-
-        area.agregarCurso(curso);
-        Coatic.getPersistencia().modificar(area);
+        Coatic.getPersistencia().insertar(alumno);
 
     }
 
-    public void modificarAlumno(Curso curso, String nombre, Area nuevo) {
-        if (curso != null) {
-            curso.setNombre(nombre);
-
-            Area viejo = curso.getArea();
-            if (!nuevo.equals(viejo)) {
-                viejo.quitarCurso(curso);
-                Coatic.getPersistencia().modificar(viejo);
-
-                nuevo.agregarCurso(curso);
-                Coatic.getPersistencia().modificar(nuevo);
-
-                curso.setArea(nuevo);
-            }
-            Coatic.getPersistencia().modificar(curso);
+    public void modificarAlumno(Alumno alumno, String nombre) {
+        if (alumno != null) {
+            alumno.setNombre(nombre);
+            Coatic.getPersistencia().modificar(alumno);
         }
     }
 
-    public void eliminarAlumno(Curso curso) {
-        if (curso != null) {
-            Coatic.getPersistencia().eliminar(curso);
+    public void eliminarAlumno(Alumno alumno) {
+        if (alumno != null) {
+            Coatic.getPersistencia().eliminar(alumno);
         }
+    }
+
+    public void inscribir(Alumno alumno, Curso curso) {
+        alumno.agregarCurso(curso);
+        Coatic.getPersistencia().modificar(alumno);
+        curso.agregarAlumno(alumno);
+        Coatic.getPersistencia().modificar(curso);
     }
 }

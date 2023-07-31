@@ -4,17 +4,16 @@ import modelo.*;
 
 public class formularioAlumnos extends javax.swing.JInternalFrame {
 
-    
     private Coatic c;
-    
+
     public formularioAlumnos(Coatic c) {
-        this.c=c;
+        this.c = c;
         initComponents();
-        this.lstAlumnos.setListData(this.c.getAreas().toArray());
-        
-        for(Curso cu : this.c.getCursos())
-        this.cmbCursos.addItem(cur);
-        
+        this.lstAlumnos.setListData(this.c.getAlumnos().toArray());
+        for (Curso cu : this.c.getCursos()) {
+            this.cmbCursos.addItem(cu);
+        }
+
         this.cmbCursos.setSelectedItem(null);
     }
 
@@ -39,7 +38,7 @@ public class formularioAlumnos extends javax.swing.JInternalFrame {
         lstAlumnos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstAlumnos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                alumnoSeleccionada(evt);
+                alumnoSeleccionado(evt);
             }
         });
         jScrollPane1.setViewportView(lstAlumnos);
@@ -77,7 +76,7 @@ public class formularioAlumnos extends javax.swing.JInternalFrame {
         btnInscribir.setText("Inscribir");
         btnInscribir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInscribirnuevoArea(evt);
+                Inscribir(evt);
             }
         });
 
@@ -88,36 +87,35 @@ public class formularioAlumnos extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnInscribir)
-                        .addGap(83, 83, 83))
+                    .addComponent(txtNombre)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnNuevo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addComponent(btnEliminar))
+                    .addComponent(lblCursos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cmbCursos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnInscribir))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnNuevo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnGuardar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                                .addComponent(btnEliminar))
-                            .addComponent(cmbCursos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(lblCursos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -127,16 +125,15 @@ public class formularioAlumnos extends javax.swing.JInternalFrame {
                             .addComponent(btnNuevo)
                             .addComponent(btnGuardar)
                             .addComponent(btnEliminar))
-                        .addGap(18, 18, 18)
-                        .addComponent(lblCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnInscribir)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnInscribir)
+                            .addComponent(cmbCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15))))
         );
 
         pack();
@@ -151,42 +148,51 @@ public class formularioAlumnos extends javax.swing.JInternalFrame {
         if (this.lstAlumnos.isSelectionEmpty()) {
             //crear un area
             this.c.crearAlumno(this.txtNombre.getText());
-        }else{
-             Alumno al = (Alumno) this.lstAlumnos.getSelectedValue();
-            this.c.modificarAlumno(al, this.txtNombre.getText());
+        } else {
+            Alumno a = (Alumno) this.lstAlumnos.getSelectedValue();
+            this.c.modificarAlumno(a, this.txtNombre.getText());
         }
         Limpiar();
     }//GEN-LAST:event_guardarArea
 
     private void eliminarArea(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarArea
-         if (!this.lstAlumnos.isSelectionEmpty()){
-              Alumno al = (Alumno) this.lstAlumnos.getSelectedValue();
-             this.c.eliminarAlumno(al);
-             Limpiar();
-         }
+        if (!this.lstAlumnos.isSelectionEmpty()) {
+            Alumno a = (Alumno) this.lstAlumnos.getSelectedValue();
+            this.c.eliminarAlumno(a);
+            Limpiar();
+        }
     }//GEN-LAST:event_eliminarArea
 
-    private void alumnoSeleccionada(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_alumnoSeleccionada
+    private void alumnoSeleccionado(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_alumnoSeleccionado
         if (!this.lstAlumnos.isSelectionEmpty()) {
-            Alumno al = (Alumno) this.lstAlumnos.getSelectedValue();
+            Alumno a = (Alumno) this.lstAlumnos.getSelectedValue();
             //Asigna los valores de los atributos a los componentes
-            this.txtNombre.setText(al.getNombre());
-            
-            this.lblCursos.setText(al.getCursos().toString());
+            this.txtNombre.setText(a.getNombre());
+
+            this.lblCursos.setText(a.getCursos().toString());
         }
-    }//GEN-LAST:event_alumnoSeleccionada
+    }//GEN-LAST:event_alumnoSeleccionado
 
-    private void btnInscribirnuevoArea(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscribirnuevoArea
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnInscribirnuevoArea
+    private void Inscribir(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Inscribir
+        if (!this.lstAlumnos.isSelectionEmpty()) {
+            Alumno a = (Alumno) this.lstAlumnos.getSelectedValue();
 
-    private void Limpiar(){
+            Curso c = (Curso) this.cmbCursos.getSelectedItem();
+
+            this.c.inscribir(a, c);
+            
+            this.lblCursos.setText(a.getCursos().toString());
+            this.cmbCursos.setSelectedItem( null);
+        }
+    }//GEN-LAST:event_Inscribir
+
+    private void Limpiar() {
         //Limpiar las cajas de texto
         this.txtNombre.setText("");
         System.out.println("Refrescando...");
         Coatic.getPersistencia().refrescar(this.c);
         System.out.println("Actualizado...");
-        this.lstAlumnos.setListData(this.c.getAreas().toArray());
+        this.lstAlumnos.setListData(this.c.getAlumnos().toArray());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

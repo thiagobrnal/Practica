@@ -1,4 +1,4 @@
-package modelo;
+ package modelo;
 
 import java.util.Set;
 import javax.persistence.*;
@@ -41,11 +41,11 @@ public class Area {
     }
     
     
-    public void agregarCurso(Curso curso) {
+    public void quitarCurso(Curso curso) {
         this.getCursos().remove(curso);
     }
     
-    public void quitarCurso(Curso curso) {
+    public void agregarCurso(Curso curso) {
         this.getCursos().add(curso);
     }
     

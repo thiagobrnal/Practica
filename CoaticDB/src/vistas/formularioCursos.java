@@ -31,6 +31,7 @@ public class formularioCursos extends javax.swing.JInternalFrame {
         btnEliminar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         cmbAreas = new javax.swing.JComboBox();
+        lblAlumnos = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -67,6 +68,11 @@ public class formularioCursos extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Area");
 
+        lblAlumnos.setBackground(new java.awt.Color(0, 0, 0));
+        lblAlumnos.setForeground(new java.awt.Color(255, 255, 255));
+        lblAlumnos.setToolTipText("");
+        lblAlumnos.setOpaque(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,7 +94,8 @@ public class formularioCursos extends javax.swing.JInternalFrame {
                         .addComponent(btnGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnEliminar))
-                    .addComponent(cmbAreas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbAreas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAlumnos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -110,7 +117,9 @@ public class formularioCursos extends javax.swing.JInternalFrame {
                             .addComponent(btnNuevo)
                             .addComponent(btnGuardar)
                             .addComponent(btnEliminar))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)))
                 .addContainerGap())
         );
 
@@ -125,10 +134,10 @@ public class formularioCursos extends javax.swing.JInternalFrame {
         //Para verificar si hay algo seleccionado en mi lista
         if (this.lstCursos.isSelectionEmpty()) {
             //crear un area
-            this.c.crearCurso(this.txtNombre.getText(), (Area)this.getSelectedItem());
+            this.c.crearCurso(this.txtNombre.getText(), (Area)this.cmbAreas.getSelectedItem());
         }else{
             Curso cu = (Curso)this.lstCursos.getSelectedValue();
-            this.c.modificarCurso(cu, this.txtNombre.getText(),(Area)this.getSelectedItem());
+            this.c.modificarCurso(cu, this.txtNombre.getText(),(Area)this.cmbAreas.getSelectedItem());
         }
         Limpiar();
     }//GEN-LAST:event_guardarCurso
@@ -148,6 +157,7 @@ public class formularioCursos extends javax.swing.JInternalFrame {
             this.txtNombre.setText(cu.getNombre());
             
             this.cmbAreas.setSelectedItem(cu.getArea());
+            this.lblAlumnos.setText(cu.getAlumnos().toString());
         }
     }//GEN-LAST:event_cursoSeleccionado
 
@@ -170,6 +180,7 @@ public class formularioCursos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAlumnos;
     private javax.swing.JList lstCursos;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables

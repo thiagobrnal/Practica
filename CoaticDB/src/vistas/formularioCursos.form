@@ -43,6 +43,7 @@
                       <Component id="btnEliminar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="cmbAreas" alignment="1" min="-2" pref="247" max="-2" attributes="0"/>
+                  <Component id="lblAlumnos" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -68,7 +69,9 @@
                           <Component id="btnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="lblAlumnos" min="-2" pref="85" max="-2" attributes="0"/>
+                      <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -145,6 +148,18 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblAlumnos">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="opaque" type="boolean" value="true"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

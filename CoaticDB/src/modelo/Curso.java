@@ -57,29 +57,6 @@ public class Curso {
         this.nombre = nombre;
     }
 
-    public int getMeses() {
-        return meses;
-    }
-
-    public void setMeses(int meses) {
-        this.meses = meses;
-    }
-
-    public Date getInicio() {
-        return inicio;
-    }
-
-    public void setInicio(Date inicio) {
-        this.inicio = inicio;
-    }
-
-    public boolean isPresencial() {
-        return presencial;
-    }
-
-    public void setPresencial(boolean presencial) {
-        this.presencial = presencial;
-    }
 
     public Area getArea() {
         return area;
@@ -89,8 +66,22 @@ public class Curso {
         this.area = area;
     }
     
+    public void agregarAlumno(Alumno alumno) {
+        this.getAlumnos().add(alumno);
+    }
+    
     @Override
     public String toString(){
         return this.getNombre();
+    }
+
+    
+    public Set<Alumno> getAlumnos() {
+        return alumnos;
+    }
+
+    
+    public void setAlumnos(Set<Alumno> alumnos) {
+        this.alumnos = alumnos;
     }
 }
