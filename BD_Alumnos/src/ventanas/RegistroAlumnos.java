@@ -2,13 +2,25 @@ package ventanas;
 
 import java.sql.*;
 import javax.swing.JOptionPane;
+
+//import itext5 para crear un documetno pdf
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+
+//import itext5 para formate e imagenes en un doc.pdf
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.BaseColor;
+
 import java.awt.HeadlessException;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class RegistroAlumnos extends javax.swing.JFrame {
 
@@ -269,43 +281,73 @@ public class RegistroAlumnos extends javax.swing.JFrame {
             //guarda el pdf en la ruta especificada
             String ruta = System.getProperty("user.home");
             PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/Reporte_alumnos.pdf"));
+
+            //creamos un objeto Imagen que contiene el header
+            Image header = Image.getInstance("src/img/header.png");
+            //fijamos la escala de la imagen (tamaño, escala del 0 a 1000)
+            header.scaleToFit(650, 1000);
+            //alinea la imagen
+            header.setAlignment(Chunk.ALIGN_CENTER);
+            
+            //Da formato al texto
+            Paragraph parrafo = new Paragraph();
+            //alineamos el texto 
+            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
+            //agregamos la leyenda al objeto parrafo
+            parrafo.add("Formato credo por Software Registro Alumno \n\n");
+            //Agregamos formato al texto (familia de letra, tamaño en px, estilo de la letra, color letra)
+            parrafo.setFont(FontFactory.getFont("Roboto",18, Font.BOLD, BaseColor.DARK_GRAY));
+            //texto del parrafo
+            parrafo.add("Alumnos registrados \n\n");
+            
+            
             documento.open();
+            
+            //Agregamos la imagen y el parrafo
+            documento.add(header);
+            documento.add(parrafo);
 
             //crea la tabla del pdf
             PdfPTable tabla = new PdfPTable(3);
             tabla.addCell("Codigo");
             tabla.addCell("Nombre del alumno");
             tabla.addCell("Grupo");
-            
+
             //se hace la conexion a la bd
             try {
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost/db_ins", "root", "12345678");
                 PreparedStatement st = con.prepareStatement("SELECT * FROM `alumnos`");
-                
+
                 ResultSet rs = st.executeQuery();
-                
+
                 if (rs.next()) {
-                    
-                    do {                        
-                        
+
+                    do {
+
                         tabla.addCell(rs.getString(1));
                         tabla.addCell(rs.getString(2));
                         tabla.addCell(rs.getString(3));
-                        
+
                     } while (rs.next());
-                    
+
                     documento.add(tabla);
-                    
+
                 }
             } catch (DocumentException | SQLException e) {
+                System.out.println("Error en conexion " + e);
             }
-            
+
             //Cierra el documento
             documento.close();
-            
+
             JOptionPane.showMessageDialog(null, "Reporte creado");
-            
+
         } catch (DocumentException | HeadlessException | FileNotFoundException e) {
+            System.out.println("Error en PDF " + e);
+
+        } catch (IOException e) {
+            System.out.println("Error en la imagen " + e);
+
         }
     }//GEN-LAST:event_btnReporte
 
