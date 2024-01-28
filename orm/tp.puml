@@ -1,0 +1,270 @@
+@startuml TP
+skinparam NoteFontName Courier
+skinparam NoteFontSize 12
+'skinparam linetype ortho
+'left to right direction
+'top to bottom direction
+
+    'class ArrayList
+    'note top 
+    '    Clase de la librería estándar de Java
+    'end note 
+
+    class SistemaAcademico {
+        +cursos_con_vacantes()
+        +cursos_mas_50_porciento()
+        +promedio_general_alumnos()
+        +proporcion_promocionados_materia()
+        +alumno_mejor_promedio()
+    }
+    note top of SistemaAcademico
+        Se pide:
+        * Saber qué cursos tienen vacantes
+        * Qué cursos están ocupados en más del 50% de su capacidad
+        * Cual es el promedio general de todos los alumnos
+        * Proporción de promocionados por materia
+        * Alumno con mejor promedio 
+    end note 
+        
+
+    class Materia {
+        -nombre
+        -codigo
+        -promedio_promocion
+
+        +cantidad_alumnos()
+        +cantidad_promocionados()
+        +proporcion_promocionados()
+    }
+
+    class Alumno {
+        -nombre
+        -legajo
+
+        +materias()
+        +promedio_materia(materia:Materia)
+        +promedio_general()
+    }
+
+    class Curso {
+        -codigo
+        -capacidad
+
+        +inscriptos()
+        +plazas_disponibles()
+    } 
+
+    class Nota {
+        -alumno : Alumno
+        -materia : Materia
+        -tipo : String
+        -nota : Integer
+    }
+
+    class Inscripcion {
+        -alumno : Alumno
+        -curso : Curso
+    }
+
+    Curso "1" -- "n" Inscripcion
+    Alumno "1" -- "n" Inscripcion
+    Nota "0-n" -- "1-n" Alumno
+    Nota "0-n" -- "1" Materia
+    'Materia "n" -- "n" Alumno
+    SistemaAcademico --> Curso
+    SistemaAcademico --> Alumno
+    SistemaAcademico --> Materia
+    SistemaAcademico --> Nota
+
+    
+    
+
+    /'
+    class ListaEquipos {
+        equipos : ArrayList
+        nombreArchivo : String
+
+        + void cargarDeArchivo()
+    }
+
+    class ListaParticipantes {
+        participantes : ArrayList
+        nombreArchivo : String
+
+        + void cargarDeArchivo()
+        + void calcularPuntajes()
+    }
+
+    class ListaPartidos {
+        partidos : ArrayList
+        nombreArchivo : String
+
+        + void cargarDeArchivo()
+    }
+
+    class ListaPronosticos {
+        pronosticos : ArrayList
+        nombreArchivo : String
+
+        + void cargarDeArchivo()
+    }
+
+    ListaEquipos --|> ArrayList
+    ListaParticipantes --|> ArrayList
+    ListaPartidos --|> ArrayList
+    ListaPronosticos --|> ArrayList
+
+    class Equipo {
+        idEquipo : int
+        nombre : String
+        descripcion : String
+    }
+
+    class Pronostico {
+        idPronostico : int
+        equipo : Equipo
+        partido : Partido
+        resultado : char
+        + int puntos()
+    }
+
+    class Partido {
+        idPartido : int
+        equipo1 : Equipo
+        equipo2 : Equipo
+        golesEquipo1 : int
+        golesEquipo2 : int
+        + char resultado (equipo : Equipo)
+    }
+
+    class Participante {
+        idParticipante : int
+        nombre : String
+        pronosticos : ListaPronosticos
+        puntaje : int
+        + void cargarPronosticos()
+    }
+    note left
+        El participante tiene un atributo
+        pronosticos de tipo ListaPronosticos
+        la cual a su vez hereda de ArrayList
+    end note 
+
+    Participante --> ListaPronosticos 
+    note on link
+        Un Participante puede
+        realizar "n" Pronósticos
+    end note
+
+    ListaPronosticos --> Pronostico : contiene
+
+
+
+    class PronosticoDeportivo {
+        participantes : ListaParticipantes
+        partidos : ListaPartidos
+        play()
+    }
+    note left
+        PronosticoDeportivo sirve
+        para simular el juego
+    end note 
+    '/
+
+    /'
+    class PronosticoDeportivo {
+        participantes : listaParticipantes
+        equipos : ListaEquipos
+        partidos : ListaPartidos
+        ListaPartidos getPartidos ()
+        void setPartidos (partidos : ListaPartidos)
+        ListaEquipos getEquipos ()
+        void setEquipos (equipos : ListaEquipos)
+        listaParticipantes getParticipantes()
+        void setParticipantes (participantes : listaParticipantes)
+        void cargarEquipos()
+        String listarEquipos()
+        void cargarParticipantes()
+        String listarParticipantes()
+        void cargarPartidos()
+        String listarPartidos()
+        void cargarPronosticos()
+        String listarPronosticos()
+    }
+    '/
+
+    ' Relaciones
+    /'
+    ListaPronosticos "1" o-- "n" Pronostico
+    note on link
+        Una ListaPronosticos puede
+        tener "n" Pronósticos
+    end note
+
+    ListaEquipos "1" o-- "n" Equipo
+    note on link
+        Una ListaEquipos puede
+        tener "n" Equipos
+    end note
+
+    ListaPartidos "1" o-- "n" Partido
+    note on link
+        Una ListaPartidos puede
+        tener "n" Partidos
+    end note
+
+    ListaPronosticos "1" o-- "n" Pronostico
+    note on link
+        Una ListaPronosticos puede
+        tener "n" Pronosticos
+    end note
+
+    ListaParticipantes "1" o-- "n" Participante
+    note on link
+        Una ListaParticipantes puede
+        tener "n" Participantes
+    end note
+
+
+    Pronostico "1" o-- "1" Equipo
+    note on link 
+        Un pronóstico corresponde
+        al resultado esperado
+        para un Equipo.
+    end note
+
+    Pronostico "1" o-- "1" Partido
+    note on link
+        Un pronóstico corresponde
+        al resultado esperado
+        para Partido.
+    end note
+
+
+    Partido "1" o-- "2" Equipo
+    note on link
+        Un Partido se disputa
+        entre dos Equipos
+    end note
+
+
+    ' Relaciones
+    PronosticoDeportivo "1" o-- "1" ListaParticipantes
+    note on link
+        Un  PronosticoDeportivo 
+        tiene una ListaParticipantes
+    end note
+
+    PronosticoDeportivo "1" o-- "1" ListaPartidos
+    note on link
+        Un  PronosticoDeportivo 
+        tiene una ListaPartidos
+    end note
+    '/
+
+    /'
+    PronosticoDeportivo "1" o-r- "n" ListaEquipos
+    PronosticoDeportivo "1" o-u- "n" ListaParticipantes
+    PronosticoDeportivo "1" o-r- "n" ListaPartidos
+    '/
+@enduml
